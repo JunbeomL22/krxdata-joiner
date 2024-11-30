@@ -1,0 +1,6 @@
+{
+    "interface": "6",
+    "max_packets": 10000,
+    "duration_seconds": 1200,
+    "output_path": "D:/KrxPacket/krx.pcap"
+}
