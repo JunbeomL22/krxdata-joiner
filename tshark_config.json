@@ -1,6 +1,9 @@
 {
-    "interface": "6",
+    "interface": "5",
     "max_packets": 10000,
     "duration_seconds": 1200,
-    "output_path": "D:/KrxPacket/krx.pcap"
+    "output_path": "D:/KrxPacket/krx.pcap",
+    "buffer_size": 1024, 
+    "snaplen": 4096 
+
 }

@@ -106,6 +106,8 @@ struct TsharkConfig {
     max_packets: u32,
     duration_seconds: u32,
     output_path: String,
+    buffer_size: u32,
+    snaplen: u32,
 }
 
 impl TsharkConfig {
@@ -125,6 +127,8 @@ impl std::fmt::Display for TsharkConfig {
         writeln!(f, "  Max Packets: {}", self.max_packets)?;
         writeln!(f, "  Duration: {} seconds", self.duration_seconds)?;
         writeln!(f, "  Output Path: {}", self.output_path)?;
+        writeln!(f, "  Buffer Size: {}", self.buffer_size)?;
+        writeln!(f, "  Snaplen: {}", self.snaplen)?;
 
         Ok(())
     }
@@ -143,6 +147,9 @@ fn run_tshark(config: &TsharkConfig) -> anyhow::Result<()> {
         .arg("-b").arg(format!("duration:{}", config.duration_seconds))
         .arg("-w").arg(&config.output_path)
         .arg("-t").arg("ad")
+        .arg("-B").arg(config.buffer_size.to_string())
+        .arg("-s").arg(config.snaplen.to_string())
+        .arg("-F").arg("pcap")
         .status()
         .context("Failed to execute tshark")?;
 
